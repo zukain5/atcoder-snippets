@@ -22,6 +22,9 @@ AtCoderの[生成AI対策ルール](https://info.atcoder.jp/entry/llm-rules-ja)�
 - `ruby/binary_search.rb`: lower bound / upper bound
 - `ruby/prefix_sum.rb`: 累積和
 - `ruby/segment_tree.rb`: 1点更新・区間集計の汎用セグメント木
+- `nvim/ruby.json`: Neovimで使用するRubyスニペット
+
+`~/.config/nvim/snippets/ruby.json`を`nvim/ruby.json`へのシンボリックリンクにすると、Neovimとこのリポジトリで同じスニペットを使用できます。
 
 ## Test
 

@@ -1,0 +1,99 @@
+{
+  "Read integer line": {
+    "prefix": "ints",
+    "body": "gets.split.map(&:to_i)",
+    "description": "1行の整数を配列として読み込む"
+  },
+  "Undirected graph input": {
+    "prefix": "graph",
+    "body": [
+      "${1:graph} = Array.new(${2:n} + 1) { [] }",
+      "",
+      "${3:m}.times do",
+      "  ${4:u}, ${5:v} = gets.split.map(&:to_i)",
+      "  $1[$4] << $5",
+      "  $1[$5] << $4",
+      "end",
+      "$0"
+    ],
+    "description": "1-indexedな無向グラフを読み込む"
+  },
+  "Breadth-first search": {
+    "prefix": "bfs",
+    "body": [
+      "${1:start} = ${2:1}",
+      "${3:dist} = Array.new(${4:graph}.length, -1)",
+      "$3[$1] = 0",
+      "queue = [$1]",
+      "head = 0",
+      "",
+      "while head < queue.length",
+      "  u = queue[head]",
+      "  head += 1",
+      "",
+      "  $4[u].each do |v|",
+      "    next if $3[v] != -1",
+      "",
+      "    $3[v] = $3[u] + 1",
+      "    queue << v",
+      "  end",
+      "end",
+      "$0"
+    ],
+    "description": "head indexを使うグラフBFS"
+  },
+  "Grid breadth-first search": {
+    "prefix": "gbfs",
+    "body": [
+      "dist = Array.new(${1:h}) { Array.new(${2:w}, -1) }",
+      "dist[${3:sy}][${4:sx}] = 0",
+      "",
+      "queue = [[$3, $4]]",
+      "head = 0",
+      "",
+      "diff = [[0, -1], [0, 1], [-1, 0], [1, 0]]",
+      "",
+      "while head < queue.size",
+      "  y, x = queue[head]",
+      "  head += 1",
+      "",
+      "  diff.each do |dy, dx|",
+      "    ny = y + dy",
+      "    nx = x + dx",
+      "",
+      "    next unless (0...$1).cover?(ny) && (0...$2).cover?(nx)",
+      "    next if ${5:grid}[ny][nx] == \"#\"",
+      "    next if dist[ny][nx] != -1",
+      "",
+      "    dist[ny][nx] = dist[y][x] + 1",
+      "    queue << [ny, nx]",
+      "  end",
+      "end",
+      "$0"
+    ],
+    "description": "上下左右へ進むグリッドBFS"
+  },
+  "Prefix sum": {
+    "prefix": "sum",
+    "body": [
+      "${1:prefix} = [0]",
+      "${2:a}.each { |v| $1 << $1[-1] + v }",
+      "$0"
+    ],
+    "description": "先頭に0を持つ累積和"
+  },
+  "Lower and upper bound": {
+    "prefix": "bounds",
+    "body": [
+      "def lower_bound(a, x)",
+      "  a.bsearch_index { |v| v >= x } || a.length",
+      "end",
+      "",
+      "def upper_bound(a, x)",
+      "  a.bsearch_index { |v| v > x } || a.length",
+      "end",
+      "$0"
+    ],
+    "description": "Rubyのlower_boundとupper_bound"
+  }
+}
